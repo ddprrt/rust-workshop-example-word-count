@@ -74,6 +74,13 @@ We recommend the following extensions:
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens).
   Inline errors
 
+## Teaching goals
+
+- Rust fundamentals: loops, structs, conditionals, APIs
+- Basic ownership and borrowing
+- Traits: Generics, trait bounds
+- Error handling
+
 ## Tasks
 
 Our goal is to build a CLI tool that takes filenames as arguments and counts
@@ -91,7 +98,7 @@ Those are the four exercises.
 - Count all words (e.g. ignore whitespace)
 - Count bytes and characters
 
-### Exercise 2: _error handling and generics_
+### Exercise 2: _error handling and trait bounds_
 
 - Extend your software to be able to handle everything hat implements `BufRead`
   (`Cursor`, `BufReader`)
@@ -116,3 +123,5 @@ Those are the four exercises.
   characters, a mixture of all four pieces.
 - Extend your app to show the filename as well
 - Use a library like `clap` to make a good CLI interface
+- Try to parallelize across threads (`rayon`) and see if there's any difference
+  in execution
