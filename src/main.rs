@@ -1,8 +1,7 @@
-use std::env;
+use std::io::Cursor;
 
-use wordcount::count_files;
+use wordcount::*;
 
 fn main() {
-    let args: Vec<String> = env::args().skip(1).collect();
-    println!("{}", count_files(args).expect("Error loading file"));
+    count(&mut Cursor::new("Hello"));
 }
