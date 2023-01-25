@@ -114,7 +114,7 @@ Those are the four exercises.
 
 ## Exercise 4: _CLI app_
 
-- Make your app runable as CLI application. Parse the command line arguments,
+- Make your app runable as CLI application (`std::env`). Parse the command line arguments,
   call your functions, and display the results.
 
 ## Extensions
