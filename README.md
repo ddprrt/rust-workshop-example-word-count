@@ -105,14 +105,14 @@ Those are the four exercises.
 - There are some situations that require error handling. Make sure of proper
   error handling through error propagation.
 
-### Exercise 3 (`ex2.rs`): _traits_
+### Exercise 3 (`ex3.rs`): _traits_
 
 - Implement the `Sum` trait to collect the totals over an iterator of
   `FileInfo`.
 - Implement the `Display` trait to put out all parts, taking a width of 8
   characters per part
 
-## Exercise 4: _CLI app_
+### Exercise 4: _CLI app_
 
 - Make your app runable as CLI application (`std::env`). Parse the command line arguments,
   call your functions, and display the results.
