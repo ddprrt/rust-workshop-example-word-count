@@ -3,11 +3,12 @@ use std::{
     fs::File,
     io::{BufRead, BufReader},
     iter::Sum,
+    ops::Add,
 };
 
 use rayon::prelude::*;
 
-#[derive(Default, PartialEq, Debug)]
+#[derive(Default, PartialEq, Debug, Clone)]
 pub struct FileInfo {
     pub bytes: usize,
     pub words: usize,
@@ -25,16 +26,25 @@ impl Display for FileInfo {
     }
 }
 
+impl Add for FileInfo {
+    type Output = FileInfo;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        let mut info = FileInfo::default();
+        info.bytes = self.bytes + rhs.bytes;
+        info.chars = self.chars + rhs.chars;
+        info.lines = self.lines + rhs.lines;
+        info.words = self.words + rhs.words;
+        info
+    }
+}
+
 impl Sum for FileInfo {
     fn sum<I: Iterator<Item = Self>>(iter: I) -> Self {
         let mut sum = FileInfo::default();
         for item in iter {
-            sum.bytes += item.bytes;
-            sum.chars += item.chars;
-            sum.lines += item.lines;
-            sum.words += item.words;
+            sum = sum + item;
         }
-
         sum
     }
 }
@@ -54,7 +64,7 @@ pub fn count_files(list: Vec<String>) -> Result<FileInfo, std::io::Error> {
     Ok(sum)
 }
 
-pub fn count(file: &mut impl BufRead) -> Result<FileInfo, std::io::Error> {
+pub fn count<T: BufRead>(file: &mut T) -> Result<FileInfo, std::io::Error> {
     let mut file_info = FileInfo::default();
     let mut buf = String::new();
     loop {
